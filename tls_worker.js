@@ -14,8 +14,8 @@ async function handleRequest(request) {
   headers.set('Access-Control-Allow-Methods', 'GET, POST');
   headers.set('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (request.headers.get('Upgrade') === 'websocket') {
-    return handleWebSocket(request);
+  if (request.headers.get('Upgrade') === 'xhttp') {
+    return handlexhttp(request);
   }
 
   if (request.method === 'OPTIONS') {
@@ -50,7 +50,7 @@ async function handleRequest(request) {
   return new Response('Method not allowed', { status: 405 });
 }
 
-async function handleWebSocket(request) {
+async function handlexhttp(request) {
   const url = new URL(request.url);
   const newUrl = new URL("https://" + url.pathname.replace(/^\/|\/$/g, ""));
 
